@@ -5,7 +5,10 @@
 ## 스팩
 - spring boot 2.4.5
 - JPA
-- MySQL
+- MySQL [ schedulerdb ]
+- hikari
 
 ## Version
-1.0.0 초기 셋팅 버전 - 2021/04/27
+1.0 초기 셋팅 버전
+  - 1.0.0 : init gradle 프로젝트 생성 [2021-04-28]
+  - 1.0.1 : DB Setting [mysql, jpa] [2021-04-28]
