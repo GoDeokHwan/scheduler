@@ -12,3 +12,4 @@
 1.0 초기 셋팅 버전
   - 1.0.0 : init gradle 프로젝트 생성 [2021-04-28]
   - 1.0.1 : DB Setting [mysql, jpa] [2021-04-28]
+  - 1.0.2 : Rest API Config [2021-04-29]

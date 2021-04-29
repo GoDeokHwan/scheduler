@@ -47,7 +47,7 @@ db:
       hibernate.order_inserts: true
       hibernate.order_updates: true
       hibernate.default_batch_fetch_size: 30
-      hibernate.ddl_auto: create
+      hibernate.ddl-auto: create-drop
 
 server:
   port: 8180

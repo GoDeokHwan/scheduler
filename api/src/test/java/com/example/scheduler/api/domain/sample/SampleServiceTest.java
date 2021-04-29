@@ -4,6 +4,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 @SpringBootTest
 public class SampleServiceTest {
 
@@ -17,5 +19,10 @@ public class SampleServiceTest {
         sampleUser.setPhoneNumber("12341234");
 
         sampleService.save(sampleUser);
+    }
+
+    @Test
+    public void 전체_조회() {
+        List<SampleUser> sampleUsers = sampleService.findAll();
     }
 }
