@@ -51,3 +51,6 @@ db:
 
 server:
   port: 8180
+
+logging:
+  config: classpath:logging/logback.xml

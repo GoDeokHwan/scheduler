@@ -1,5 +1,6 @@
 package com.example.scheduler.api.domain.sample;
 
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -25,4 +26,12 @@ public class SampleUser {
 
     @Column
     private String phoneNumber;
+
+
+    @Builder
+    public SampleUser(Long id, String name, String phoneNumber) {
+        this.id = id;
+        this.name = name;
+        this.phoneNumber = phoneNumber;
+    }
 }

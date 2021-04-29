@@ -1,10 +1,13 @@
 package com.example.scheduler.api.domain.sample;
 
+import com.example.scheduler.api.domain.sample.model.UserRequest;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 import java.util.List;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 @SpringBootTest
 public class SampleServiceTest {
@@ -14,11 +17,15 @@ public class SampleServiceTest {
 
     @Test
     public void 저장() {
-        SampleUser sampleUser = new SampleUser();
-        sampleUser.setName("테스트1");
-        sampleUser.setPhoneNumber("12341234");
+        String name = "테스트1";
+        String phoneNumber = "테스트1";
+        SampleUser sampleUser = sampleService.save(UserRequest
+                .builder()
+                .name(name)
+                .phoneNumber(phoneNumber)
+                .build());
 
-        sampleService.save(sampleUser);
+        assertThat(sampleUser.getName()).isEqualTo(name);
     }
 
     @Test
