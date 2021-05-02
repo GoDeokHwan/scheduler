@@ -1,0 +1,1 @@
+INSERT INTO sample_user(id, name, phone_number) VALUES (1, '테스터1', '01012341234');

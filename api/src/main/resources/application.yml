@@ -8,7 +8,12 @@ spring:
         max-file-size: 200MB
         max-request-size: 200MB
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: none
+#      ddl-auto: create # 초기셋팅
+  datasource:
+    platform: mysql
+#    initialization-mode: always # 초기셋팅
+    initialization-mode: never
 db:
   common:
     tarnsaction:
@@ -48,6 +53,7 @@ db:
       hibernate.order_updates: true
       hibernate.default_batch_fetch_size: 30
       hibernate.ddl-auto: create-drop
+      hibernate.generate-ddl: true
 
 server:
   port: 8180

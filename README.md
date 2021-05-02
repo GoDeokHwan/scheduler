@@ -14,5 +14,5 @@
   - 1.0.1 : DB Setting [mysql, jpa] [2021-04-28]
   - 1.0.2 : Rest API Config [2021-04-29]
   - 1.0.3 : Logger [2021-04-29]
-  - 1.0.4 : DB Create 셋팅
+  - 1.0.4 : DB Create 셋팅 [2021-05-02]
   - 1.0.5 : Test 전용 DB 구축
