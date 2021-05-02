@@ -16,3 +16,16 @@
   - 1.0.3 : Logger [2021-04-29]
   - 1.0.4 : DB Create 셋팅 [2021-05-02]
   - 1.0.5 : Test 전용 DB 구축
+
+## 1.0.4 DB Create 셋팅 방법
+1. schema-mysql.yml : DDL 설정
+2. data-mysql.sql   : DML 설정 ( 초기 데이터 셋팅 )
+3. application.yml 파일 아래와 같이 설정 후 서버 구동
+```yml
+spring.datasource.initialization-mode = always
+```
+4. application.yml 파일 변경
+```yml
+spring.datasource.initialization-mode = never
+```
+
