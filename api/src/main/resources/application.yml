@@ -60,3 +60,12 @@ server:
 
 logging:
   config: classpath:logging/logback.xml
+
+com:
+  example:
+    scheduler:
+      http:
+        readTimeout: 10000
+        connectTimeout: 3000
+        maxTotal: 1000
+        defaultMaxPerRoute: 1000

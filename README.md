@@ -17,7 +17,7 @@
   - 1.0.3 : Logger [2021-04-29]
   - 1.0.4 : DB Create 셋팅 [2021-05-02]
   - 1.0.5 : Test 전용 DB 구축 [2021-05-04]
-  - 1.0.6 : Rest Template Config
+  - 1.0.6 : Rest Template Config [2021-05-05]
   - 1.0.7 : Thread Config
   - 1.0.8 : Excption Handler
 
