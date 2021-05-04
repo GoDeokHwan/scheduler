@@ -5,8 +5,9 @@
 ## 스팩
 - spring boot 2.4.5
 - JPA
-- MySQL [ schedulerdb ]
+- MySQL [ 스키마 : schedulerdb ]
 - hikari
+- H2 [ Test DB 구축]
 
 ## Version
 1.0 초기 셋팅 버전
@@ -15,7 +16,10 @@
   - 1.0.2 : Rest API Config [2021-04-29]
   - 1.0.3 : Logger [2021-04-29]
   - 1.0.4 : DB Create 셋팅 [2021-05-02]
-  - 1.0.5 : Test 전용 DB 구축
+  - 1.0.5 : Test 전용 DB 구축 [2021-05-04]
+  - 1.0.6 : Rest Template Config
+  - 1.0.7 : Thread Config
+  - 1.0.8 : Excption Handler
 
 ## 1.0.4 DB Create 셋팅 방법
 1. schema-mysql.yml : DDL 설정

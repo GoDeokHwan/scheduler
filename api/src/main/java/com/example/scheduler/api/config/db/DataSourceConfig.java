@@ -22,8 +22,8 @@ import java.util.Properties;
 
 @Configuration
 @EnableJpaRepositories(basePackages = {"com.example.scheduler.api.domain"},
-    entityManagerFactoryRef = "entityManagerFactory",
-    transactionManagerRef = "transactionManager"
+    entityManagerFactoryRef = DbConstants.SCHEDULER_ENTITY_MANAGER_FACTORY,
+    transactionManagerRef = DbConstants.SCHEDULER_TRANSACTION_MANAGER
 )
 @EnableTransactionManagement
 public class DataSourceConfig {
@@ -34,9 +34,7 @@ public class DataSourceConfig {
     @Value("${db.common.tarnsaction.timeout:5}")
     private int transactionTimeout;
 
-    private final String PERSISTENCE_UNIT_NAME = "scheduler";
-
-    @Bean(name = "dataSource")
+    @Bean(name = "mysqlDataSource")
     public DataSource dataSource() throws Exception {
         HikariConfig hikariConfig = new HikariConfig(propertiesLoader.getHikari());
         HikariDataSource dataSource = new HikariDataSource(hikariConfig);
@@ -46,8 +44,8 @@ public class DataSourceConfig {
     }
 
     @Primary
-    @Bean(name = "entityManagerFactory")
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Qualifier("dataSource") DataSource dataSource) {
+    @Bean(name = DbConstants.SCHEDULER_ENTITY_MANAGER_FACTORY)
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(@Qualifier("mysqlDataSource") DataSource dataSource) {
         EnableJpaRepositories enableJpaRepositories = this.getClass().getAnnotation(EnableJpaRepositories.class);
         LocalContainerEntityManagerFactoryBean entityManagerFactoryBean = new LocalContainerEntityManagerFactoryBean();
         entityManagerFactoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
@@ -56,14 +54,14 @@ public class DataSourceConfig {
         entityManagerFactoryBean.setJpaDialect(new HibernateJpaDialect());
 
         entityManagerFactoryBean.setDataSource(dataSource);
-        entityManagerFactoryBean.setPersistenceUnitName(PERSISTENCE_UNIT_NAME);
+        entityManagerFactoryBean.setPersistenceUnitName(DbConstants.SCHEDULER_PERSISTENCE_UNIT_NAME);
         entityManagerFactoryBean.setPackagesToScan(enableJpaRepositories.basePackages());
         return entityManagerFactoryBean;
     }
 
     @Primary
-    @Bean(name = "transactionManager")
-    public PlatformTransactionManager transactionManager(@Qualifier("entityManagerFactory") LocalContainerEntityManagerFactoryBean entityManagerFactory) {
+    @Bean(name = DbConstants.SCHEDULER_TRANSACTION_MANAGER)
+    public PlatformTransactionManager transactionManager(@Qualifier(DbConstants.SCHEDULER_ENTITY_MANAGER_FACTORY) LocalContainerEntityManagerFactoryBean entityManagerFactory) {
         JpaTransactionManager txManager = new JpaTransactionManager();
         txManager.setEntityManagerFactory(entityManagerFactory.getObject());
         txManager.setDefaultTimeout(transactionTimeout);
