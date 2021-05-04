@@ -22,4 +22,10 @@ public class SampleController {
     public SampleUser save(@RequestBody UserRequest request) {
         return sampleService.save(request);
     }
+
+    @PostMapping("/sample/users")
+    public void saveAll(@RequestBody List<UserRequest> requests) {
+        sampleService.saveAll(requests);
+    }
+
 }

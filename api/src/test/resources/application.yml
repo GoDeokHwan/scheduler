@@ -45,3 +45,17 @@ logging:
 spring:
   main:
     allow-bean-definition-overriding: true
+
+
+com:
+  example:
+    scheduler:
+      http:
+        readTimeout: 10000
+        connectTimeout: 3000
+        maxTotal: 1000
+        defaultMaxPerRoute: 1000
+      thread:
+        corePoolSize: 3
+        maxPoolSize: 30
+        queueCapacity: 10

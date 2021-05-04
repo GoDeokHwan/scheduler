@@ -10,6 +10,7 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,4 +43,20 @@ public class SampleServiceTest {
         List<SampleUser> sampleUsers = sampleService.findAll();
         assertThat(sampleUsers.size()).isEqualTo(0);
     }
+
+    @Test
+    public void 다중_저장 () {
+        List<UserRequest> userRequests = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            userRequests.add(UserRequest
+                    .builder()
+                    .name("테스트 " + i)
+                    .phoneNumber("0101234000" + i)
+                    .build());
+        }
+        sampleService.saveAll(userRequests);
+        List<SampleUser> sampleUsers = sampleService.findAll();
+        assertThat(sampleUsers.size()).isEqualTo(10);
+    }
+
 }
