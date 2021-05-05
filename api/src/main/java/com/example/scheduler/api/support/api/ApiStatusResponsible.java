@@ -1,4 +1,4 @@
-package com.example.scheduler.api.support;
+package com.example.scheduler.api.support.api;
 
 public interface ApiStatusResponsible {
     Integer getCode();

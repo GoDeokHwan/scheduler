@@ -38,6 +38,9 @@ dependencies {
     implementation "com.google.code.gson:gson:+"
     implementation "com.google.guava:guava:26.0-jre"
     implementation("org.apache.commons:commons-lang3:3.7")
+    implementation group: 'org.codehaus.jackson', name: 'jackson-core-asl', version: '1.9.13'
+    implementation group: 'org.codehaus.jackson', name: 'jackson-mapper-asl', version: '1.9.13'
+
 
     // test
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -45,6 +48,7 @@ dependencies {
     testImplementation "org.assertj:assertj-core:3.11.0"
     compile "br.com.six2six:fixture-factory:3.1.0"
     testCompile 'com.h2database:h2:1.4.197'
+
 
 }
 

@@ -59,4 +59,13 @@ public class SampleServiceTest {
         assertThat(sampleUsers.size()).isEqualTo(10);
     }
 
+    public void 이름_없이_생성시_오류() {
+        String phoneNumber = "테스트2";
+        SampleUser sampleUser = sampleService.save(UserRequest
+                .builder()
+                .phoneNumber(phoneNumber)
+                .build());
+
+    }
+
 }
