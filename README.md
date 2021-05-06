@@ -13,7 +13,7 @@
 
 # Version
 
-##1.0 초기 셋팅 버전
+## 1.0 초기 셋팅 버전
   - 1.0.0 : init gradle 프로젝트 생성 [2021-04-28]
   - 1.0.1 : DB Setting [mysql, jpa] [2021-04-28]
   - 1.0.2 : Rest API Config [2021-04-29]
@@ -24,7 +24,7 @@
   - 1.0.7 : Thread Config [2021-05-05]
   - 1.0.8 : Exception Handler [2021-05-05]
 
-##1.1 Scheduler API 구현
+## 1.1 Scheduler API 구현
   - 1.1.0 : Scheduler DB 테이블 스키마 설계 [2021-05-06]
   - 1.1.1 : 
 
