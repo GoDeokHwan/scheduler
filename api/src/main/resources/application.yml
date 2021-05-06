@@ -8,12 +8,12 @@ spring:
         max-file-size: 200MB
         max-request-size: 200MB
     hibernate:
-      ddl-auto: none
-#      ddl-auto: create # 초기셋팅
+#      ddl-auto: none
+      ddl-auto: create # 초기셋팅
   datasource:
     platform: mysql
-#    initialization-mode: always # 초기셋팅
-    initialization-mode: never
+    initialization-mode: always # 초기셋팅
+#    initialization-mode: never
 db:
   common:
     tarnsaction:
