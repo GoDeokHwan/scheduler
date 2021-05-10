@@ -2,13 +2,20 @@
 ## 목표
 해당 스케쥴러 Rest API기반에 JPA 기반으로 TDD 방식을 접목하는 샘플형 프로젝트를 목표로 하며, 향후 프로젝트 진행시 바로바로 해당 소스에 필요한 부분을 뜯어내서 구성 가능하게 하는 것을 목표로 합니다.
 
+- 하루에 한번씩은 완성을 못하더라도 커밋하는 것을 두번째 목표
+
 ## 스팩
+### 기본 사양
 - spring boot 2.4.5
 - JPA
 - MySQL [ 스키마 : schedulerdb ]
 - hikari
 - H2 [ Test DB 구축]
-
+### Util
+- gson
+- jackson
+- validation-api
+### IDLE
  * Intellij 로 구축
 
 # Version
@@ -26,7 +33,7 @@
 
 ## 1.1 Scheduler API 구현
   - 1.1.0 : Scheduler DB 테이블 스키마 설계 [2021-05-06]
-  - 1.1.1 : 사용자 계정 일반 사양, 스케쥴러 기초 CRUD Rest API 설계
+  - 1.1.1 : 사용자 계정 일반 사양, 스케쥴러 기초 CRUD Rest API 설계 [작성중]
   - 1.1.2 : 사용자 공휴일 CRUD Rest API 설계
   - 1.1.3 : 사용자 계정 비밀번호 암호화
   - 1.1.4 : 간단한 View 화면 개발

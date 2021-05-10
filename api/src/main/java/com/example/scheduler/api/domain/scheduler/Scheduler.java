@@ -2,6 +2,7 @@ package com.example.scheduler.api.domain.scheduler;
 
 import com.example.scheduler.api.domain.BaseEntity;
 import com.example.scheduler.api.domain.user.User;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -45,7 +46,7 @@ public class Scheduler extends BaseEntity {
     @Column
     private String alarmTime;
     @Column
-    private String isRepeat;
+    private boolean isRepeat;
     @Column
     @Enumerated(value = EnumType.STRING)
     private RepeatType repeatType;
@@ -54,4 +55,23 @@ public class Scheduler extends BaseEntity {
     @Column
     private String memo;
 
+    @Builder
+    public Scheduler(Long id, User user, String date, String dateYear, String dateMonth, String dateDay, String time, String timeHour, String timeMin, boolean isAlarm, AlarmType alarmType, String alarmTime, boolean isRepeat, RepeatType repeatType, boolean isHoliday, String memo) {
+        this.id = id;
+        this.user = user;
+        this.date = date;
+        this.dateYear = dateYear;
+        this.dateMonth = dateMonth;
+        this.dateDay = dateDay;
+        this.time = time;
+        this.timeHour = timeHour;
+        this.timeMin = timeMin;
+        this.isAlarm = isAlarm;
+        this.alarmType = alarmType;
+        this.alarmTime = alarmTime;
+        this.isRepeat = isRepeat;
+        this.repeatType = repeatType;
+        this.isHoliday = isHoliday;
+        this.memo = memo;
+    }
 }

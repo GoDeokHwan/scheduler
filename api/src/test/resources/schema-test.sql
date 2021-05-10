@@ -39,7 +39,7 @@ create table schedulerdb.scheduler
     is_repeat       varchar(1) default '0' null comment '반복 여부 ( 1 : 반복  ,  0 : 미반복 )',
     repeat_type     varchar(10)            null comment '반복 타입',
     is_holiday      varchar(1) default '0' null comment '공휴일 제외 여부 ( 1 : 제외 , 0 : 미제외)',
-    memo            blob                   null,
+    memo            LONGTEXT               null,
     create_datetime datetime               null,
     modify_datetime datetime               null,
     constraint fk_scheduler_user

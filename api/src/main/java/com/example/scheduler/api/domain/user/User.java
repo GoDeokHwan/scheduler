@@ -3,6 +3,7 @@ package com.example.scheduler.api.domain.user;
 import com.example.scheduler.api.domain.BaseEntity;
 import com.example.scheduler.api.domain.UseStatus;
 import com.example.scheduler.api.domain.scheduler.Scheduler;
+import com.example.scheduler.api.domain.user.model.UserInfoView;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -58,5 +59,14 @@ public class User extends BaseEntity {
         this.tokenKey = tokenKey;
         this.status = status;
         this.schedulers = schedulers;
+    }
+
+    public UserInfoView toUserinfoView() {
+        return UserInfoView.builder()
+                .name(this.name)
+                .loginId(this.loginId)
+                .phoneNumber(this.phoneNumber)
+                .status(this.status)
+                .build();
     }
 }
