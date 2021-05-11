@@ -1,6 +1,7 @@
 package com.example.scheduler.api.domain.scheduler;
 
 import com.example.scheduler.api.domain.BaseEntity;
+import com.example.scheduler.api.domain.scheduler.model.SchedulerInfoView;
 import com.example.scheduler.api.domain.user.User;
 import lombok.Builder;
 import lombok.Getter;
@@ -74,4 +75,23 @@ public class Scheduler extends BaseEntity {
         this.isHoliday = isHoliday;
         this.memo = memo;
     }
+
+    public SchedulerInfoView toSchedulerInfoView() {
+        return SchedulerInfoView.builder()
+                .dateYear(this.dateYear)
+                .alarmType(this.alarmType)
+                .dateDay(this.dateDay)
+                .dateMonth(this.dateMonth)
+                .isAlarm(this.isAlarm)
+                .isHoliday(this.isHoliday)
+                .isRepeat(this.isRepeat)
+                .memo(this.memo)
+                .id(this.id)
+                .timeHour(this.timeHour)
+                .timeMin(this.timeMin)
+                .repeatType(this.repeatType)
+                .userId(this.user.getId())
+                .build();
+    }
+
 }

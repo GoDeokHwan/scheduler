@@ -1,5 +1,7 @@
 package com.example.scheduler.api.domain.sample;
 
+import com.example.scheduler.api.support.api.ApiException;
+import com.example.scheduler.api.support.api.ApiStatus;
 import com.example.scheduler.api.testsupport.ShedulerComponentTest;
 import com.example.scheduler.api.domain.sample.model.UserRequest;
 import org.junit.jupiter.api.Test;
@@ -14,6 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 @RunWith(SpringRunner.class)
 @ShedulerComponentTest
@@ -59,6 +62,7 @@ public class SampleServiceTest {
         assertThat(sampleUsers.size()).isEqualTo(10);
     }
 
+    @Test
     public void 이름_없이_생성시_오류() {
         String phoneNumber = "테스트2";
         SampleUser sampleUser = sampleService.save(UserRequest
@@ -66,6 +70,14 @@ public class SampleServiceTest {
                 .phoneNumber(phoneNumber)
                 .build());
 
+        assertThatThrownBy(() -> {  sampleService.save(UserRequest
+                .builder()
+                .phoneNumber(phoneNumber)
+                .build());
+        }).isInstanceOf(ApiException.class)
+        .hasMessage(ApiStatus.MISSING_REQUEST_PARAMETER.getMessage());
     }
+
+
 
 }

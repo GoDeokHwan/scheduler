@@ -28,9 +28,7 @@ public class UserService {
     }
 
     public User getUser(Long id) {
-        return Optional.ofNullable(userRepository.findById(id))
-                .orElseThrow(() -> new ApiException(ApiStatus.IS_NOT_USER))
-                .get();
+        return userRepository.findById(id).orElseThrow(() -> new ApiException(ApiStatus.IS_NOT_USER));
     }
 
 }

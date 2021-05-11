@@ -14,6 +14,7 @@ public enum ApiStatus implements ApiStatusResponsible {
     IS_NOT_USER(-1000, "사용자 정보가 없습니다.", false),
 
     // 스케쥴러
+    IS_NOT_SCHEDULER(-2000, "스케쥴러를 찾을 수 없습니다.", true),
     IS_DATETIME_ERROR(-2001, "날짜,시간 표현식이 올바르지 않습니다.", true)
     ;
 
