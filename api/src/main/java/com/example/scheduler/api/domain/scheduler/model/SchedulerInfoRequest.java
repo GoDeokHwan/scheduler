@@ -12,9 +12,8 @@ import javax.validation.constraints.NotNull;
 
 @Getter
 @Setter
-@Builder
 public class SchedulerInfoRequest {
-    @NotNull
+    @NotNull(message = "사용자 ID는 필수 값입니다.")
     private Long userId;
     private String dateYear;
     private String dateMonth;
@@ -28,6 +27,23 @@ public class SchedulerInfoRequest {
     private RepeatType repeatType;
     private boolean isHoliday;
     private String memo;
+
+    @Builder
+    public SchedulerInfoRequest(@NotNull Long userId, String dateYear, String dateMonth, String dateDay, String timeHour, String timeMin, boolean isAlarm, AlarmType alarmType, String alarmTime, boolean isRepeat, RepeatType repeatType, boolean isHoliday, String memo) {
+        this.userId = userId;
+        this.dateYear = dateYear;
+        this.dateMonth = dateMonth;
+        this.dateDay = dateDay;
+        this.timeHour = timeHour;
+        this.timeMin = timeMin;
+        this.isAlarm = isAlarm;
+        this.alarmType = alarmType;
+        this.alarmTime = alarmTime;
+        this.isRepeat = isRepeat;
+        this.repeatType = repeatType;
+        this.isHoliday = isHoliday;
+        this.memo = memo;
+    }
 
     public boolean isDateValidation() {
         if (StringUtils.isInteger(this.dateYear) &&
@@ -51,10 +67,10 @@ public class SchedulerInfoRequest {
     }
 
     public String fullDate() {
-        return this.dateYear + this.dateMonth + this.dateDay;
+        return String.format("%04d", Integer.valueOf(this.dateYear)) + String.format("%02d", Integer.valueOf(this.dateMonth)) + String.format("%02d", Integer.valueOf(this.dateDay));
     }
 
     public String fullTime() {
-        return this.timeHour + this.timeMin;
+        return String.format("%02d", Integer.valueOf(this.timeHour)) + String.format("%02d", Integer.valueOf(this.timeMin));
     }
 }

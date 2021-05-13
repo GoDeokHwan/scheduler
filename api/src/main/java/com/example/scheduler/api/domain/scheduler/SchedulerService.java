@@ -11,6 +11,7 @@ import com.example.scheduler.api.util.StringUtils;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.Optional;
@@ -65,6 +66,7 @@ public class SchedulerService {
      * @param month
      * @return
      */
+    @Transactional(readOnly = true)
     public List<SchedulerInfoView> findSchedulers(Long id, String year, String month) {
         if (!(StringUtils.isInteger(year) && StringUtils.isInteger(month) && DateUtils.isDate(Integer.valueOf(year), Integer.valueOf(month), 1))) {
             throw new ApiException(ApiStatus.IS_DATETIME_ERROR);

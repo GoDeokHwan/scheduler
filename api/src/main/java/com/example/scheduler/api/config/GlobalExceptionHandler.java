@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.HttpMediaTypeNotAcceptableException;
 import org.springframework.web.HttpRequestMethodNotSupportedException;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.MissingServletRequestParameterException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -43,6 +44,8 @@ public class GlobalExceptionHandler {
         } else if (e instanceof MissingServletRequestParameterException) {
             log.info("필수 파라미터가 없어서 예외 발생.");
             return ApiResult.of(ApiStatus.MISSING_REQUEST_PARAMETER);
+        } else if (e instanceof MethodArgumentNotValidException) {
+            return ApiResult.of(e.getMessage());
         }
         log.error(e.getMessage(), e);
         return ApiResult.of(ApiStatus.ERROR);

@@ -33,7 +33,7 @@
 
 ## 1.1 Scheduler API 구현
   - 1.1.0 : Scheduler DB 테이블 스키마 설계 [2021-05-06]
-  - 1.1.1 : 사용자 계정 일반 사양, 스케쥴러 기초 CRUD Rest API 설계 [작성중]
+  - 1.1.1 : 사용자 계정 일반 사양, 스케쥴러 기초 CRUD Rest API 설계 [2021-05-13]
   - 1.1.2 : 사용자 공휴일 CRUD Rest API 설계
   - 1.1.3 : 사용자 계정 비밀번호 암호화
   - 1.1.4 : 간단한 View 화면 개발
@@ -83,5 +83,25 @@ spring.datasource.initialization-mode = never
     code: 100
     message: 'SUCCESS'
     data: {}
+}
+```
+
+## 1.1.1 
+### LazyInitialization 에러 처리
+```aidl
+LazyInitializationException: could not initialize proxy - no session
+```
+스케쥴러를 조회하는 곳에서 발생하게되는 에러였습니다.
+이것은 `@ToMany` 관계에서 조회를 할 떄 지연되면서 발생합니다.
+
+해결 방법
+> CASE1 : FetchType.EAGER 를 사용하여 즉시 로딩으로 바꾼다.
+
+하지만 이 방법은 사용 할 수 없는 경우도 발생합니다.
+> CASE2 : @Transactional(readOnly = true)) 를 사용하여 조회 시점까지 세션을 유지합니다.
+```java
+@Transactional(readOnly = true)
+public List<SchedulerInfoView> findSchedulers(Long id, String year, String month){
+    ...
 }
 ```

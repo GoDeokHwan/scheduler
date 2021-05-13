@@ -17,21 +17,21 @@ public class BaseEntity {
 
     @Column
     @CreatedDate
-    protected LocalDateTime createDate;
+    protected LocalDateTime createDatetime;
 
     @Column
     @LastModifiedDate
-    protected LocalDateTime modifyDate;
+    protected LocalDateTime modifyDatetime;
 
     @PrePersist
     public void prePersist() {
         LocalDateTime now = LocalDateTime.now().withNano(0);
-        createDate = now;
-        modifyDate = now;
+        createDatetime = now;
+        modifyDatetime = now;
     }
 
     @PreUpdate
     public void preUpdate() {
-        this.modifyDate = LocalDateTime.now().withNano(0);
+        this.modifyDatetime = LocalDateTime.now().withNano(0);
     }
 }

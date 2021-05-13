@@ -1,6 +1,7 @@
 package com.example.scheduler.api.support.api;
 
 import lombok.Getter;
+import lombok.Setter;
 
 @Getter
 public enum ApiStatus implements ApiStatusResponsible {

@@ -29,9 +29,19 @@ public class ApiResult<T> {
         return new ApiResult<>(apiStatus, null);
     }
 
+    public static <T> ApiResult<T> of(String message) {
+        return new ApiResult<>(message);
+    }
+
     private ApiResult(ApiStatusResponsible apiStatus, T data) {
         this.code = apiStatus.getCode();
         this.data = data;
         this.message = apiStatus.getMessage();
+    }
+
+    private ApiResult(String message) {
+        this.code = -405;
+        this.data = null;
+        this.message = message;
     }
 }
