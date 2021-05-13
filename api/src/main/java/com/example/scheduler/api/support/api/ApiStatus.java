@@ -16,7 +16,12 @@ public enum ApiStatus implements ApiStatusResponsible {
 
     // 스케쥴러
     IS_NOT_SCHEDULER(-2000, "스케쥴러를 찾을 수 없습니다.", true),
-    IS_DATETIME_ERROR(-2001, "날짜,시간 표현식이 올바르지 않습니다.", true)
+    IS_DATETIME_ERROR(-2001, "날짜,시간 표현식이 올바르지 않습니다.", true),
+
+    // 공휴일
+    IS_NOT_HOLIDAY(-3000, "공유일을 찾을 수 없습니다.", true),
+    COMMON_HOLIDAY_NOT_UPDATE(-3001, "공통 공휴일은 수정이 불가능합니다.", true),
+    COMMON_HOLIDAY_NOT_DELETE(-3002, "공통 공휴일은 삭제가 불가능합니다.", true)
     ;
 
     private Integer code;

@@ -2,6 +2,7 @@ package com.example.scheduler.api.domain.user;
 
 import com.example.scheduler.api.domain.BaseEntity;
 import com.example.scheduler.api.domain.UseStatus;
+import com.example.scheduler.api.domain.holiday.Holiday;
 import com.example.scheduler.api.domain.scheduler.Scheduler;
 import com.example.scheduler.api.domain.user.model.UserInfoView;
 import lombok.Builder;
@@ -49,16 +50,20 @@ public class User extends BaseEntity {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
     private List<Scheduler> schedulers = new ArrayList<>();
 
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "user")
+    private List<Holiday> holidays = new ArrayList<>();
+
     @Builder
-    public User(Long id, String loginId, String password, String name, String phoneNumber, String tokenKey, UseStatus status, List<Scheduler> schedulers) {
+    public User(Long id, String loginId, String password, String name, String phoneNumber, String tokenKey, UseStatus status, List<Scheduler> schedulers, List<Holiday> holidays) {
         this.id = id;
         this.loginId = loginId;
         this.password = password;
         this.name = name;
-        this.phoneNumber = StringUtils.isNotBlank(phoneNumber) ? phoneNumber.replace("-", "") : phoneNumber;
+        this.phoneNumber = phoneNumber;
         this.tokenKey = tokenKey;
         this.status = status;
         this.schedulers = schedulers;
+        this.holidays = holidays;
     }
 
     public UserInfoView toUserinfoView() {

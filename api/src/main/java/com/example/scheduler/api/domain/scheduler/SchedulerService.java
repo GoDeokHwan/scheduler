@@ -74,6 +74,9 @@ public class SchedulerService {
 
         User user = userService.getUser(id);
         return user.getSchedulers().stream()
+                .filter(f -> {
+                    return f.getDateYear().equals(year) && f.getDateMonth().equals(month);
+                })
                 .map(Scheduler::toSchedulerInfoView)
                 .collect(Collectors.toList());
     }
@@ -106,9 +109,7 @@ public class SchedulerService {
         scheduler.setHoliday(request.isHoliday());
         scheduler.setMemo(request.getMemo());
 
-        return Optional.of(schedulerRepository.saveAndFlush(scheduler))
-                .map(Scheduler::toSchedulerInfoView)
-                .get();
+        return schedulerRepository.saveAndFlush(scheduler).toSchedulerInfoView();
     }
 
     /**
