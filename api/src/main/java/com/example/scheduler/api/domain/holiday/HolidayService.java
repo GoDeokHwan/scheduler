@@ -27,26 +27,33 @@ public class HolidayService {
     private UserService userService;
 
     /**
-     * 공휴일 저장
+     * 개인 공휴일 저장
      * @param request
      * @result HolidayInfoView
      */
     public HolidayInfoView save(HolidayRequest request) {
+        if (!request.isDateValidation()) {
+            throw new ApiException(ApiStatus.IS_DATETIME_ERROR);
+        }
+
+        User user = userService.getUser(request.getUserId());
+
         return holidayRepository.save(
                 Holiday.builder()
-                        .date(request.getDate())
+                        .date(request.fullDate())
                         .dateDay(request.getDateDay())
                         .dateMonth(request.getDateMonth())
                         .dateYear(request.getDateYear())
                         .isCommon(false)
                         .memo(request.getMemo())
                         .name(request.getName())
+                        .user(user)
                         .build()
         ).toHolidayInfoVIew();
     }
 
     /**
-     * 공휴일 저장
+     * 공휴일 조회
      * @param userId
      * @param year
      * @param month
@@ -61,9 +68,7 @@ public class HolidayService {
         User user = userService.getUser(userId);
 
         return user.getHolidays().stream()
-                .filter(f -> {
-                    return f.getDateYear().equals(year) && f.getDateMonth().equals(month);
-                })
+                .filter(f -> f.getDateYear().equals(year) && f.getDateMonth().equals(month))
                 .map(Holiday::toHolidayInfoVIew)
                 .collect(Collectors.toList());
     }
@@ -98,6 +103,7 @@ public class HolidayService {
             throw new ApiException(ApiStatus.COMMON_HOLIDAY_NOT_DELETE);
         }
         holidayRepository.delete(holiday);
+        holidayRepository.flush();
     }
 
 }

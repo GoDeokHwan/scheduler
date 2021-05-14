@@ -58,7 +58,7 @@ create table schedulerdb.holiday
     name            varchar(45)            null comment '공휴일명',
     memo            varchar(100)           null comment '공휴일 내용',
     date            varchar(8)             null comment '날짜',
-    date_year       varchar(2)             null,
+    date_year       varchar(4)             null,
     date_month      varchar(2)             null,
     date_day        varchar(2)             null,
     is_common       TINYINT(1) default 0 null comment '공통 공휴일( 1 : 공통 공휴일 , 0 : 특정 사용자 공휴일 )',
