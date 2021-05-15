@@ -17,6 +17,11 @@
 - validation-api
 ### IDLE
  * Intellij 로 구축
+### Front
+- node 14.17.0
+- npm 6.14.13
+- Vue CLI v4.5.13
+
 
 # Version
 
@@ -35,8 +40,8 @@
   - 1.1.0 : Scheduler DB 테이블 스키마 설계 [2021-05-06]
   - 1.1.1 : 사용자 계정 일반 사양, 스케쥴러 기초 CRUD Rest API 설계 [2021-05-13]
   - 1.1.2 : 사용자 공휴일 CRUD Rest API 설계 [2021-05-15]
-  - 1.1.3 : 사용자 계정 비밀번호 암호화
-  - 1.1.4 : 간단한 View 화면 개발
+  - 1.1.3 : 간단한 View 화면 개발 [작성중]
+     - 서버개발이 목표기 때문에 Vue CLI 3 으로 프론트 구성
 
 ## 1.2 Spring Security
   - 1.2.0 : Spring Security 설계 
@@ -104,4 +109,31 @@ LazyInitializationException: could not initialize proxy - no session
 public List<SchedulerInfoView> findSchedulers(Long id, String year, String month){
     ...
 }
+```
+
+## 1.1.3
+### Vue CLI 3 설치
+1. Node 설치
+2. Vue CLI 설치
+```shell
+npm i -g @vue/cli
+vue --version
+```
+vue 버전이 3.x 이상인지 확인
+```shell
+npm i -g @vue/cli-init
+```
+vue 프로젝트 생성
+```shell
+vue create front
+```
+- step1 > Manually select features 선택
+- step2 > Vue version, Babel, Router, Vuex, CSS Pre-processors, Linter 들 선택하였습니다.
+- step3 > 3.x
+- step4 > Stylus
+- step5 > `Lint on save` > `In package.json` > `N`
+프로젝트 생성 후
+> 프로젝트  실행
+```shell
+npm run serve
 ```
