@@ -21,6 +21,7 @@
 - node 14.17.0
 - npm 6.14.13
 - Vue CLI v4.5.13
+- Vuetify 2.4.0
 
 
 # Version
@@ -136,4 +137,14 @@ vue create front
 > 프로젝트  실행
 ```shell
 npm run serve
+```
+### vuetify 적용
+```shell
+vue add vuetify
+```
+Vue cli 3 버전이므로  Preview (Vuetify 3 + Vite) 로 설치
+
+main.js 에 해당 vuetify import 
+```javascript
+import vuetify from './plugins/vuetify'
 ```
