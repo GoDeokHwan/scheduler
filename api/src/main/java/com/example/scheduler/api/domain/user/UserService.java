@@ -31,4 +31,7 @@ public class UserService {
         return userRepository.findById(id).orElseThrow(() -> new ApiException(ApiStatus.IS_NOT_USER));
     }
 
+    public boolean validationUserId(String loginId) {
+        return userRepository.findByLoginId(loginId).isPresent();
+    }
 }

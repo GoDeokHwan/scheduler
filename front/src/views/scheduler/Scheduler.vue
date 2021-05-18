@@ -67,7 +67,8 @@ export default {
       selectYear: '',
       selectMonth: '',
       selectDate: '',
-      totalWeek: 0
+      totalWeek: 0,
+      userId: 1
     }
   },
   created () {
@@ -125,7 +126,6 @@ export default {
         })
         this.dayArr = this.dayArr.concat(nextDayArr)
       }
-      console.log(this.dayArr)
       this.totalWeek = Math.floor(this.dayArr.length / 7)
     },
     selectDay (item) {

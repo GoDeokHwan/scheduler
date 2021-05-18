@@ -26,4 +26,9 @@ public class UserController {
         return ApiResult.of(ApiStatus.SUCCESS);
     }
 
+    @GetMapping("/v1/user/id-check")
+    public ApiResult validationUserId(@RequestParam(name = "loginId") String loginId) {
+        return ApiResult.of(ApiStatus.SUCCESS, userService.validationUserId(loginId));
+    }
+
 }
