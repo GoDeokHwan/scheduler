@@ -20,6 +20,7 @@ public class SchedulerInfoView {
     private String timeMin;
     private boolean isAlarm;
     private AlarmType alarmType;
+    private String alarmTime;
     private boolean isRepeat;
     private RepeatType repeatType;
     private boolean isHoliday;

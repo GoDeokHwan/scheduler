@@ -66,6 +66,82 @@
                margin-top: 2%;
                margin-right: 20px">
       <h1>일정 등록/수정</h1>
+        <div>
+          <div style="display: inline-block; overflow: auto; width: 50%; height: 100%; vertical-align: top;">
+            <div class="">
+              <v-btn color="primary" style="width: 30%; cursor: pointer;" v-on:click="addScheduler">
+                추가
+              </v-btn>
+            </div>
+            <table style="width: 90%;">
+              <thead>
+                <tr>
+                  <th width="30%">날짜</th>
+                  <th width="70%">내용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="(item, index) in schedulerDatas" v-on:click="fnSelectScheduler(item)">
+                  <td>{{item.dateYear}} - {{item.dateMonth}} - {{item.dateDay}} {{item.timeHour}}:{{item.timeMin}}</td>
+                  <td>{{item.memo}}</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <div style="display: inline-block; width: 50%;">
+            <div class="">
+              <p></p>
+            </div>
+            <div class="">
+              <p class="">시간</p>
+              <select v-model="selectScheduler.hour" style="border-style: double; width: 100px;">
+                <option v-for="item in hour" :value="item">{{item}}</option>
+              </select>
+              &nbsp;
+              <select v-model="selectScheduler.min" style="border-style: double;  width: 100px;">
+                <option v-for="item in min" :value="item">{{item}}</option>
+              </select>
+            </div>
+            <div class="">
+              <p class="">알람여부</p>
+              <select v-model="selectScheduler.alermType" style="border-style: double;  width: 100px;">
+                <option v-for="item in alarmType" :value="item.code">{{item.name}}</option>
+              </select>
+              &nbsp;
+              <select v-if="selectScheduler.alermType == 'DAY'" v-model="selectScheduler.alermTime" style="border-style: double;  width: 100px;">
+                <option v-for="item in day" :value="item">{{item}}</option>
+              </select>
+              <select v-if="selectScheduler.alermType == 'HOUR'" v-model="selectScheduler.alermTime" style="border-style: double;  width: 100px;">
+                <option v-for="item in hour" :value="item">{{item}}</option>
+              </select>
+              <select v-if="selectScheduler.alermType == 'MINUTE'" v-model="selectScheduler.alermTime" style="border-style: double;  width: 100px;">
+                <option v-for="item in min" :value="item">{{item}}</option>
+              </select>
+            </div>
+            <div class="">
+              <p class="">반복여부</p>
+              <select v-model="selectScheduler.repeatType" style="border-style: double;  width: 100px;">
+                <option v-for="item in repeatType" :value="item.code">{{item.name}}</option>
+              </select>
+            </div>
+            <div class="">
+              <p class="">공휴일 제외 여부</p>
+              <select v-model="selectScheduler.isHoliday" style="border-style: double;  width: 100px;">
+                <option value="N">N</option>
+                <option value="Y">Y</option>
+              </select>
+            </div>
+            <div class="">
+              <p class="">메모</p>
+              <textarea rows="3" cols="60" style="border-style: double;" v-model="selectScheduler.memo"></textarea>
+            </div>
+            <div class="">
+              <v-btn color="primary" style="width: 30%; cursor: pointer;" v-on:click="saveScheduler">
+                저장
+              </v-btn>
+            </div>
+          </div>
+        </div>
       </v-sheet>
     </div>
   </v-app>
@@ -95,16 +171,49 @@ export default {
         isUpate: false,
         id: null,
         isCommon: false
-      }
+      },
+      schedulerDatas: [],
+      selectScheduler: {
+        hour: '00',
+        min: '00',
+        alermType: 'NONE',
+        alermTime: '',
+        repeatType: 'NONE',
+        isHoliday: 'N',
+        memo: '',
+        isUpdate: false,
+        id: null
+      },
+      hour: ['00','01','02','03','04','05','06','07','08','09','10','11','12','13','14','15','16','17','18','19','20','21','22','23'],
+      min: ['00','01','02','03','04','05','06','07','08','09',
+        '10','11','12','13','14','15','16','17','18','19',
+        '20','21','22','23','24','25','26','27','28','29',
+        '30','31','32','33','34','35','36','37','38','39',
+        '40','41','42','43','44','45','46','47','48','49',
+        '50','51','52','53','54','55','56','57','58','59'],
+      day: ['1','2','3','4','5','6','7'],
+      alarmType: [
+        {code : 'NONE', name: '없음'},
+        {code : 'DAY', name: '일'},
+        {code : 'HOUR', name: '시간'},
+        {code : 'MINUTE', name: '분'}
+      ],
+      repeatType: [
+        {code : 'NONE', name: '없음'},
+        {code : 'YEAR', name: '년'},
+        {code : 'MONTH', name: '달'},
+        {code : 'WEAK', name: '주'}
+      ]
     }
   },
   created () {
     let date = new Date()
-    this.selectYear = date.getFullYear()
+    this.selectYear = String(date.getFullYear())
     this.selectMonth = helpers.fillStr(2, String(date.getMonth() + 1), '0')
     this.selectDate = helpers.fillStr(2, String(date.getDate()), '0')
     this.setDayArr(date.getFullYear(), date.getMonth() + 1)
     this.getHoliday(this.selectYear, this.selectMonth)
+    this.getSchedulers(this.selectYear, this.selectMonth)
   },
   methods: {
     setDayArr (inpYear, inpMonth) {
@@ -128,7 +237,7 @@ export default {
               id: null,
               isCommon: false
             },
-            data: {}
+            data: []
           }
         })
         lastDayArr = lastDayArr.sort((a, b) => a.date - b.date)
@@ -152,7 +261,7 @@ export default {
             id: null,
             isCommon: false
           },
-          data: {}
+          data: []
         }
       })
       this.dayArr = this.dayArr.concat(thisDayArr)
@@ -174,7 +283,7 @@ export default {
               id: null,
               isCommon: false
             },
-            data: {}
+            data: []
           }
         })
         this.dayArr = this.dayArr.concat(nextDayArr)
@@ -187,6 +296,8 @@ export default {
       this.selectDate = helpers.fillStr(2, String(item.date), '0')
 
       this.holiday = item.holiday
+      this.schedulerDatas = item.data
+      this.addScheduler()
     },
     isSelect (item) {
       return (this.selectYear === item.year)
@@ -274,7 +385,105 @@ export default {
               alert(res.data.message)
             }
           }).catch(err => alert(err))
-
+      }
+    },
+    addScheduler () {
+      this.selectScheduler = {
+        hour: '00',
+        min: '00',
+        alermType: 'NONE',
+        alermTime: '',
+        repeatType: 'NONE',
+        isHoliday: 'N',
+        memo: '',
+        isUpdate: false
+      }
+    },
+    saveScheduler () {
+      if (this.selectScheduler.isUpdate) {
+        axios.put(`http://localhost:8180/api/v1/schedulers/${this.selectScheduler.id}`, {
+          userId: this.userId,
+          dateYear: this.selectYear,
+          dateMonth: this.selectMonth,
+          dateDay: this.selectDate,
+          timeHour: this.selectScheduler.hour,
+          timeMin: this.selectScheduler.min,
+          isAlarm: this.selectScheduler.alermType != 'NONE',
+          alarmType: this.selectScheduler.alermType,
+          alarmTime: this.selectScheduler.alermTime,
+          isRepeat: this.selectScheduler.repeatType != 'NONE',
+          repeatType: this.selectScheduler.repeatType,
+          isHoliday: this.selectScheduler.isHoliday === 'Y',
+          memo: this.selectScheduler.memo
+        }).then(res => {
+          if (res.data.code === 0) {
+            this.dayArr.filter(f => f.fullDate === res.data.data.dateYear + res.data.data.dateMonth + res.data.data.dateDay)
+              .map(m => {
+                m.data.filter(ff => ff.id === res.data.data.id)
+                  .map(mm => mm = res.data.data)
+              })
+          } else {
+            alert(res.data.message)
+          }
+        }).catch(err => alert(err))
+      } else {
+        axios.post(`http://localhost:8180/api/v1/scheduler`, {
+          userId: this.userId,
+          dateYear: this.selectYear,
+          dateMonth: this.selectMonth,
+          dateDay: this.selectDate,
+          timeHour: this.selectScheduler.hour,
+          timeMin: this.selectScheduler.min,
+          isAlarm: this.selectScheduler.alermType != 'NONE',
+          alarmType: this.selectScheduler.alermType,
+          alarmTime: this.selectScheduler.alermTime,
+          isRepeat: this.selectScheduler.repeatType != 'NONE',
+          repeatType: this.selectScheduler.repeatType,
+          isHoliday: this.selectScheduler.isHoliday === 'Y',
+          memo: this.selectScheduler.memo
+        }).then(res => {
+          if (res.data.code === 0) {
+            this.dayArr.filter(f => f.fullDate === res.data.data.dateYear + res.data.data.dateMonth + res.data.data.dateDay)
+              .map(m => {
+                m.data.push(res.data.data)
+              })
+          } else {
+            alert(res.data.message)
+          }
+        }).catch(err => alert(err))
+      }
+    },
+    getSchedulers (inpYear, inpMonth) {
+      axios.get(`http://localhost:8180/api/v1/schedulers/${this.userId}`, {
+        params: {
+          year: inpYear,
+          month: inpMonth
+        }
+      }).then(res => {
+        if (res.data.code == 0) {
+          res.data.data.forEach(data => {
+            this.dayArr.filter(f => f.fullDate === data.dateYear + data.dateMonth + data.dateDay)
+              .map(m => {
+                m.data.push(data)
+              })
+          })
+          console.log(this.dayArr)
+        } else {
+          alert(res.data.message)
+        }
+      }).catch(err => alert(err))
+    },
+    fnSelectScheduler (item) {
+      this.selectScheduler = {
+        hour: item.timeHour,
+        min: item.timeMin,
+        alermType: item.alarmType,
+        alermTime: item.alarmTime,
+        repeatType: item.repeatType,
+        isHoliday: item.isHoliday ? 'Y' : 'N',
+        memo: item.memo,
+        isUpdate: true,
+        id: item.id
       }
     }
   }

@@ -91,6 +91,7 @@ public class Scheduler extends BaseEntity {
                 .timeMin(this.timeMin)
                 .repeatType(this.repeatType)
                 .userId(this.user.getId())
+                .alarmTime(this.alarmTime)
                 .build();
     }
 
