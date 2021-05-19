@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "serve": "vite preview",
+    "preview": "vite preview --open --port 8080",
     "build": "vite build",
     "lint": "vue-cli-service lint",
     "dev": "vite"

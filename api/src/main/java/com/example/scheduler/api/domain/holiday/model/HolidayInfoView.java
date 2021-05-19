@@ -15,9 +15,10 @@ public class HolidayInfoView {
     private String dateMonth;
     private String dateDay;
     private Long userId;
+    private boolean isCommon;
 
     @Builder
-    public HolidayInfoView(Long id, String name, String memo, String date, String dateYear, String dateMonth, String dateDay, Long userId) {
+    public HolidayInfoView(Long id, String name, String memo, String date, String dateYear, String dateMonth, String dateDay, Long userId, boolean isCommon) {
         this.id = id;
         this.name = name;
         this.memo = memo;
@@ -26,5 +27,6 @@ public class HolidayInfoView {
         this.dateMonth = dateMonth;
         this.dateDay = dateDay;
         this.userId = userId;
+        this.isCommon = isCommon;
     }
 }

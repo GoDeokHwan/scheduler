@@ -71,6 +71,7 @@ public class Holiday extends BaseEntity {
                 .memo(memo)
                 .name(name)
                 .userId(user.getId())
+                .isCommon(isCommon)
                 .build();
     }
 
