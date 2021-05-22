@@ -74,4 +74,12 @@ public class User extends BaseEntity {
                 .status(this.status)
                 .build();
     }
+
+    public boolean isEnable () {
+        return status.isEnable();
+    }
+
+    public void clearTokenKey () {
+        this.tokenKey = null;
+    }
 }

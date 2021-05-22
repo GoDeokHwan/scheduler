@@ -73,3 +73,13 @@ com:
         corePoolSize: 3
         maxPoolSize: 30
         queueCapacity: 10
+
+scheduler:
+  jwt:
+    header: Authorization
+    secret: '@scheduler-Secript@'
+    expiration: 1440
+    refresh: 2880
+    authPath: /auth/login
+    authRefresh: /auth/refresh
+    issuer: http://localhost:8080

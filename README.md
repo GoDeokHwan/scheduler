@@ -41,11 +41,11 @@
   - 1.1.0 : Scheduler DB 테이블 스키마 설계 [2021-05-06]
   - 1.1.1 : 사용자 계정 일반 사양, 스케쥴러 기초 CRUD Rest API 설계 [2021-05-13]
   - 1.1.2 : 사용자 공휴일 CRUD Rest API 설계 [2021-05-15]
-  - 1.1.3 : 간단한 View 화면 개발 [작성중]
+  - 1.1.3 : 간단한 View 화면 개발 [2021-05-20]
      - 서버개발이 목표기 때문에 Vue CLI 3 으로 프론트 구성
 
 ## 1.2 Spring Security
-  - 1.2.0 : Spring Security 설계 
+  - 1.2.0 : Spring Security 설계 [작성중]
   - 1.2.1 : Spring Security 추가
   - 1.2.2 : 사용자 계정에 Spring Security 연동
 
