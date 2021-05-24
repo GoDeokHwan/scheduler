@@ -164,7 +164,7 @@ export default {
       selectMonth: '',
       selectDate: '',
       totalWeek: 0,
-      userId: 1,
+      userId: null,
       holiday: {
         name: null,
         memo: null,
@@ -207,6 +207,9 @@ export default {
     }
   },
   created () {
+    this.userId = helpers.parseToken().id
+    console.log(helpers.parseToken())
+    console.log(helpers.parseToken().id)
     let date = new Date()
     this.selectYear = String(date.getFullYear())
     this.selectMonth = helpers.fillStr(2, String(date.getMonth() + 1), '0')

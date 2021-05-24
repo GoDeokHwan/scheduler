@@ -13,7 +13,7 @@ public class CustomCorsFilter extends CorsFilter {
 
     private static UrlBasedCorsConfigurationSource configurationSource() {
         CorsConfiguration config = new CorsConfiguration();
-        config.setAllowCredentials(true);
+        config.setAllowCredentials(false);
         config.addAllowedOrigin("*");
         config.addAllowedHeader("*");
         config.setMaxAge(36000L);

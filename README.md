@@ -45,9 +45,9 @@
      - 서버개발이 목표기 때문에 Vue CLI 3 으로 프론트 구성
 
 ## 1.2 Spring Security
-  - 1.2.0 : Spring Security 설계 [작성중]
-  - 1.2.1 : Spring Security 추가
-  - 1.2.2 : 사용자 계정에 Spring Security 연동
+  - 1.2.0 : Spring Security 설계 [2021-05-21]
+  - 1.2.1 : Spring Security 추가 [2021-05-21]
+  - 1.2.2 : 사용자 계정에 Spring Security 연동 [작성중]
 
 ## 1.3 Spring Batch
   - 1.3.0 : 공휴일 공공데이터 연계  

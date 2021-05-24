@@ -47,7 +47,7 @@ public class UserService {
            throw new BadCredentialsException(ApiStatus.AUTHENTICATION.getMessage());
        }
 
-       if (user.isEnable()) {
+       if (!user.isEnable()) {
            throw new BadCredentialsException("미승인된 유저입니다.");
        }
 
@@ -59,5 +59,12 @@ public class UserService {
     public void logout(Long id) {
         User user = getUser(id);
         user.clearTokenKey();
+    }
+
+    public void validTokenKey(Long id, String token) {
+        User user = userRepository.findById(id).orElseThrow(() -> new BadCredentialsException("유저가 없습니다."));
+        if (org.apache.commons.lang3.StringUtils.isNotBlank(user.getTokenKey()) || !user.getTokenKey().equals(token)) {
+            throw new BadCredentialsException("이미 로그인 된 유저입니다.");
+        }
     }
 }

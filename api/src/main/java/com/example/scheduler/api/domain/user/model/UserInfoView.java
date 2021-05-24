@@ -18,4 +18,5 @@ public class UserInfoView {
 
     private UseStatus status;
 
+    private String tokenKey;
 }

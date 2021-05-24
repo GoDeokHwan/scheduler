@@ -15,4 +15,5 @@ public class AuthorizationUserDetail {
 
     private String phoneNumber;
 
+    private String tokenKey;
 }

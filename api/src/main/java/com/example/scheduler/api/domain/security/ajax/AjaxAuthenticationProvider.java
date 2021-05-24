@@ -46,6 +46,7 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider {
         principal.setLoginId(userInfoView.getLoginId());
         principal.setName(userInfoView.getLoginId());
         principal.setPhoneNumber(userInfoView.getPhoneNumber());
+        principal.setTokenKey(userInfoView.getTokenKey());
 
         return principal;
     }

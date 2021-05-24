@@ -4,6 +4,7 @@ import com.example.scheduler.api.config.securiy.token.JwtToken;
 import com.example.scheduler.api.config.securiy.token.JwtTokenFactory;
 import com.example.scheduler.api.domain.security.model.AuthorizationUserDetail;
 import com.example.scheduler.api.util.JsonHelper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.security.core.Authentication;
@@ -24,6 +25,7 @@ import java.util.Map;
 @Component
 public class AjaxAwareAuthenticationSuccessHandler implements AuthenticationSuccessHandler {
 
+    @Autowired
     private JwtTokenFactory tokenFactory;
 
     protected final void clearAuthenticationAttributes(HttpServletRequest request) {

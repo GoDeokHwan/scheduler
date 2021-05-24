@@ -1,3 +1,5 @@
+import JwtDecode from 'jwt-decode'
+
 /**
  * 요일 반환
  * @param date 날짜
@@ -49,9 +51,15 @@ const fillStr = (width, str, pad) => {
   }
 }
 
+const parseToken = () => {
+  let token = localStorage.getItem('token')
+  return JSON.parse(JwtDecode(token).details)
+}
+
 export default {
   dayOfWeek,
   getLastDayOfMonth,
   isNull,
-  fillStr
+  fillStr,
+  parseToken
 }

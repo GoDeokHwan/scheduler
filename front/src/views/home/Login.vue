@@ -13,13 +13,13 @@
         <h1 style="text-align: center;">LOGIN</h1>
         <v-divider style="top: 2px;"></v-divider>
         <div style="padding-left: 30px;padding-right: 30px;height: 50px;margin-top: 20px;">
-          <input type="text" placeholder="Login ID" style="border-bottom: 1px solid; width: 100%; height: 100%;"/>
+          <input type="text" placeholder="Login ID" v-model="loginId" style="border-bottom: 1px solid; width: 100%; height: 100%;"/>
         </div>
         <div style="padding-left: 30px;padding-right: 30px;height: 50px;margin-top: 20px;">
-          <input type="password" placeholder="Password" style="border-bottom: 1px solid; width: 100%; height: 100%;"/>
+          <input type="password" placeholder="Password" v-model="password" style="border-bottom: 1px solid; width: 100%; height: 100%;"/>
         </div>
         <div style="padding-right: 30px;padding-left: 30px; padding-top: 30px;">
-          <v-btn color="primary" style="width: 100%; cursor: pointer;" v-on:click="login">
+          <v-btn color="primary" style="width: 100%; cursor: pointer;" :loading="isLoading" v-on:click="login">
             로그인
           </v-btn>
         </div>
@@ -51,7 +51,9 @@ export default {
   },
   data () {
     return {
-
+      loginId: null,
+      password: null,
+      isLoading: false
     }
   },
   created () {
@@ -62,7 +64,28 @@ export default {
       this.$router.push({ path: `/signUp`})
     },
     login () {
-      this.$router.push({ path: `/scheduler`})
+      if (localStorage.getItem('token')) {
+        this.$router.push({ path: `/scheduler`})
+        return
+      }
+      if (!this.login) {
+        alert('아이디는 필수 입니다.')
+      }
+      if (!this.password) {
+        alert('비밀 번호는 필수 입니다.')
+      }
+
+      this.isLoading = true
+      this.$store.dispatch('login', {
+        loginId: this.loginId,
+        password: this.password
+      }).then(res => {
+        if (res.isSuccess) {
+          this.$router.push({ path: `/scheduler`})
+        }
+        this.isLoading = false
+      })
+
     }
   }
 }
