@@ -73,6 +73,7 @@ public class User extends BaseEntity {
                 .phoneNumber(this.phoneNumber)
                 .status(this.status)
                 .tokenKey(this.tokenKey)
+                .id(this.id)
                 .build();
     }
 

@@ -149,7 +149,6 @@
 
 <script>
 import helpers from '../../util/Helpers'
-import axios from 'axios'
 
 export default {
   name: 'Scheduler',
@@ -208,8 +207,6 @@ export default {
   },
   created () {
     this.userId = helpers.parseToken().id
-    console.log(helpers.parseToken())
-    console.log(helpers.parseToken().id)
     let date = new Date()
     this.selectYear = String(date.getFullYear())
     this.selectMonth = helpers.fillStr(2, String(date.getMonth() + 1), '0')
@@ -308,7 +305,7 @@ export default {
         && (this.selectDate === helpers.fillStr(2, String(item.date), '0'))
     },
     getHoliday (inpYear, inpMonth) {
-      axios.get(`http://localhost:8180/api/v1/holidays/${this.userId}`, {
+      this.axios.get(`/api/v1/holidays/${this.userId}`, {
         params: {
           year: inpYear,
           month: inpMonth
@@ -349,7 +346,7 @@ export default {
         userId: this.userId
       }
       if (this.holiday.isUpate) {
-        axios.put(`http://localhost:8180/api/v1/holidays/${this.holiday.id}`, holidayRequest)
+        this.axios.put(`/api/v1/holidays/${this.holiday.id}`, holidayRequest)
           .then(res => {
             if (res.data.code === 0) {
               let selectDayInfo = this.dayArr.filter(f => f.fullDate === res.data.data.date)
@@ -369,7 +366,7 @@ export default {
             }
           }).catch(err => alert(err))
       } else {
-        axios.post(`http://localhost:8180/api/v1/holidays`, holidayRequest)
+        this.axios.post(`/api/v1/holidays`, holidayRequest)
           .then(res => {
             if (res.data.code === 0) {
               let selectDayInfo = this.dayArr.filter(f => f.fullDate === res.data.data.date)
@@ -404,7 +401,7 @@ export default {
     },
     saveScheduler () {
       if (this.selectScheduler.isUpdate) {
-        axios.put(`http://localhost:8180/api/v1/schedulers/${this.selectScheduler.id}`, {
+        this.axios.put(`/api/v1/schedulers/${this.selectScheduler.id}`, {
           userId: this.userId,
           dateYear: this.selectYear,
           dateMonth: this.selectMonth,
@@ -430,7 +427,7 @@ export default {
           }
         }).catch(err => alert(err))
       } else {
-        axios.post(`http://localhost:8180/api/v1/scheduler`, {
+        this.axios.post(`/api/v1/scheduler`, {
           userId: this.userId,
           dateYear: this.selectYear,
           dateMonth: this.selectMonth,
@@ -457,7 +454,7 @@ export default {
       }
     },
     getSchedulers (inpYear, inpMonth) {
-      axios.get(`http://localhost:8180/api/v1/schedulers/${this.userId}`, {
+      this.axios.get(`/api/v1/schedulers/${this.userId}`, {
         params: {
           year: inpYear,
           month: inpMonth

@@ -74,7 +74,7 @@ export default {
       if (!this.validation()) {
         return
       }
-      axios.post('http://localhost:8180/api/v1/users', {
+      this.axios.post('/api/v1/users', {
         loginId : this.loginId,
         password : this.password,
         name : this.name,
@@ -120,7 +120,7 @@ export default {
       return true
     },
     loginIdValidationCheck () {
-      axios.get('http://localhost:8180/api/v1/user/id-check', {
+      this.axios.get('/api/v1/user/id-check', {
         params: {
           loginId : this.loginId
         }

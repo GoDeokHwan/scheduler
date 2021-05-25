@@ -1,5 +1,4 @@
 import { createStore } from 'vuex'
-import axios from 'axios'
 
 const LOCAL_STORAGE_TOKEN_KEY = 'token'
 
@@ -15,9 +14,9 @@ export default createStore({
         isSuccess: false,
         data: {}
       }
-      return axios({
+      return this.axios({
         method: 'post',
-        url: 'http://localhost:8180/auth/login',
+        url: '/auth/login',
         data: loginParam,
         headers: {
           'X-Requested-With': 'XMLHttpRequest',
