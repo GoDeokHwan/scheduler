@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:mysql://localhost:3306/schedulerdb?serverTimezone=Asia/Seoul
+      username: develop
+      password: go8426!@
+      driver-class-name: com.mysql.jdbc.Driver
+    initialization-mode: never
+  hibernate:
+    ddl-auto: none
+  batch:
+    job:
+      names: ${job.name:NONE}

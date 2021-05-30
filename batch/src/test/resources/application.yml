@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+  datasource:
+    hikari:
+      jdbc-url: jdbc:h2:mem:shcedulerdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=false
+      username: "SA"
+      password: ""
+      driver-class-name: org.hibernate.dialect.H2Dialect
+    initialization-mode: never
+  hibernate:
+    ddl-auto: none
+  batch:
+    job:
+      names: ${job.name:NONE}

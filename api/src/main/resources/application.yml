@@ -39,7 +39,7 @@ db:
       dataSource.sendFractionalSeconds: false
       username: develop
       password: go8426!@
-      jdbcUrl: jdbc:mysql://localhost:3306/schedulerdb
+      jdbcUrl: jdbc:mysql://localhost:3306/schedulerdb?serverTimezone=Asia/Seoul
       maximumPoolSize: 10
     jpa:
       hibernate.dialect: com.example.scheduler.api.config.db.CustomMySQLDialect

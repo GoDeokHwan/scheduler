@@ -50,7 +50,8 @@
   - 1.2.2 : 사용자 계정에 Spring Security 연동 [2021-05-25]
 
 ## 1.3 Spring Batch
-  - 1.3.0 : 공휴일 공공데이터 연계  
+  - 1.3.0 : Spring Boot Batch 생성 [2021-05-30]  
+  - 1.3.1 : 공휴일 공공데이터 연계
 
 # 📄 Version 별 특이사항
 ## 1.0.4
@@ -148,3 +149,16 @@ main.js 에 해당 vuetify import
 ```javascript
 import vuetify from './plugins/vuetify'
 ```
+
+## 1.3.0
+### Spring Boot Batch 실행
+1. Edit Configurations
+2. Spring boot 로 실행 생성
+3. Program arguments
+```textmate
+--job.name=[Job Name] // 실행할 Job명칭 
+[param]=[값] // Job Parameter
+ex >
+--job.name=sampleJob requestDate=20210530
+```
+4. Run
