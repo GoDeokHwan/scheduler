@@ -162,3 +162,24 @@ ex >
 --job.name=sampleJob requestDate=20210530
 ```
 4. Run
+
+## 1.3.1
+### 공휴일 공공데이터
+1. [공휴일 공공데이터](https://www.data.go.kr/tcs/dss/selectApiDataDetailView.do?publicDataPk=15012690)
+2. 활용신청
+3. 정보
+Url : http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
+   
+Param
+```textmate
+ServiceKey : 발급 받은 서비스키
+solYear : 조회년도
+solMonth : 조회달
+pageNo : 페이지No
+numOfRows : 조회 페이지수
+```
+Result
+```textmate
+dateName : 공휴일명
+locdate : 공휴일(YYYYMMdd)
+```

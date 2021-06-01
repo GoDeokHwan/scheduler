@@ -13,3 +13,8 @@ spring:
   batch:
     job:
       names: ${job.name:NONE}
+
+public:
+  data:
+    key: mSMTdcOf2M60Eh4mnTVPd1HYE5yykdwAzGrFzBGUzGXt9VXBLTOB7Opa9oP4xJUc2odLnRuZyUH0SjzoimicWQ%3asdfhtruerjerjSFGJDJYTJRTJD%3DASFXVZXVZXVASDFASFASFWQR
+    url: http://apis.data.go.kr/B090041/openapi/service/SpcdeInfoService/getRestDeInfo
